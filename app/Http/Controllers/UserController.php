@@ -8,64 +8,86 @@ use Facade\Ignition\Exceptions\ViewException;
 use Session;
 use Crypt;
 use Hash;
+use Illuminate\Support\Facades\Auth;
+use Validator;
 use App\Models\User;
+use Illuminate\Support\Facades\Redirect;
 
 class UserController extends Controller
 {
+    public function Home()
+    {
+        return view('forntend.index');
+    }
+    public function UserLoginPage()
+    {
+        if(!empty(Auth()->User())){
+            return redirect(url('/dashboard'));
+        }else
+        return view('forntend.login');
+    }
+
     public function SignUP(Request $req)
     {
-        if($req->password == $req->c_password){
-        $data = new User;
-        $data->user_name = $req->user_name;
-        $data->profile_creator = $req->profile_creator;
-        $data->religion_id = $req->religion_id;
-        $data->email = $req->email;
-        $data->contact_number = $req->mobile;
-        $data->password = Hash::make($req->password);
-        $data->save();
-        $req->session()->flash('success', 'Register successfully');
-        return redirect('/');
-        }else{
-
-            $req->session()->flash('error', 'Your password Not Match');
+        $validator = Validator::make($req->all(), [
+            'user_name' => 'required',
+            'profile_creator' => 'required',
+            'password' => 'required',
+            'c_password' => 'required|same:password',
+            'email' => 'required|email|unique:users',
+            'contact_number' => 'required',
+            'religion_id' => 'required',
+        ]);
+        if ($validator->fails()) {
+            return Redirect::back()->withErrors($validator->errors());
+        }
+        $input = $req->all();
+        $input['password'] = Hash::make($input['password']);
+        $user = User::create($input);
+        if ($user) {
+            $req->session()->flash('success', 'Register successfully');
+            return redirect('/');
+        } else {
+            $req->session()->flash('error', 'failed');
             return redirect('/');
         }
-
     }
     function UserLogin(Request $req)
-	{
-		$matchThese = ['email' => $req->input('email')];
-    	$user = User::where($matchThese)->get();
-        $user_count = User::where($matchThese)->count();
+    {
+        $validator = Validator::make(
+            $req->all(),
+            [
 
-		// try {
-	
-    	if($user_count == '1' && Hash::check($req->input('password'), $user[0]->password) )
-		
-    	{
-			$req->session()->put('user_id',$user[0]->id);
-			$req->session()->put('user_name',$user[0]->user_name);
-			
-			return redirect(url('/dashboard'));
-    	}else{
-            $req->session()->flash('error', 'Your password Not Match');
-			return redirect()->back()->withInput();
+                'email' => 'required|email|exists:users,email',
+                'password' => 'required',
 
-		}
+            ],
+            [
+                'email.exists' => 'Your email not register with us please register', // custom message
+            ]
+        );
+        if ($validator->fails()) {
+            return Redirect::back()->withErrors($validator->errors());
+        }
+        if (Auth::attempt(['email' => $req->email, 'password' => $req->password])) {
 
-    	$req->session()->flash('error', 'Invalid password!');
-    	return redirect()
-    			->back()
-    			->withInput();
-	}
+            return redirect(url('/dashboard'));
+        } else {
+            $validator->getMessageBag()->add('password', 'Password is incorrect.');
+            return redirect()->back()->withErrors($validator);
+        }
+    }
 
-  public function UserDashboard()
-  {
-    return view('forntend.dashboard');
-  }
-
+    public function UserDashboard()
+    {
+        return view('forntend.dashboard');
+    }
 
 
-
-
+    public function Logout()
+    {
+        Session::flush();
+        Auth::logout();
+        return redirect(url('/'));
+    }
 }

@@ -24,14 +24,6 @@
 
 
 
-
-
-
-
-
-
-
-
     <title>Aquila Matrimony</title>
 
 </head>
@@ -170,26 +162,25 @@
                         @endif
 
 
-
-                        @if(Session::get('error'))
-
-                        
-
-                        <div class="alert alert-danger alert-dismissable m-0">
+                        @if($errors->any())
+                    	@foreach($errors->all() as $error)
+                            
+                            <div class="alert alert-danger alert-dismissable m-0">
 
                             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
 
-                            {{ Session::get('error') }}
+                            {{  $error }}
 
-                        </div>
-
-                        
-
+                            </div> 
+                            @endforeach
                         @endif
+
+
+
                         <form action="{{url('/signup')}}" method="post">
 
-                        @csrf
-                            <input type="radio" id="html" name="gender" value="Male"  required><label for="html">Male</label>
+                            @csrf
+                            <input type="radio" id="html" name="gender" value="Male" required><label for="html">Male</label>
 
                             <input type="radio" id="css" name="gender" value="Female" required><label for="css">Female</label>
 
@@ -220,7 +211,7 @@
 
                                 <input type="email" name="email" required class="form-control" placeholder="Email Address">
 
-                                <input type="number" name="mobile" required class="form-control" placeholder="Mobile No.">
+                                <input type="number" name="contact_number" required class="form-control" placeholder="Mobile No.">
 
                                 <input type="password" name="password" required class="form-control" placeholder="Password">
 

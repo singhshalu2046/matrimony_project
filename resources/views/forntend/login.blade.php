@@ -4,25 +4,23 @@
 
 <head>
 
-    <!-- Required meta tags -->
+  <!-- Required meta tags -->
 
-    <meta charset="utf-8">
+  <meta charset="utf-8">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-
-
-    <link rel="stylesheet" href="{{ URL::asset('forntend/css/bootstrap.min.css') }}">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
 
-    <link rel="stylesheet" href="{{ URL::asset('forntend/css/bootstrap.css') }}">
+  <link rel="stylesheet" href="{{ URL::asset('forntend/css/bootstrap.min.css') }}">
 
 
 
-    <link rel="stylesheet" href="{{ URL::asset('forntend/css/style.css') }}">
+  <link rel="stylesheet" href="{{ URL::asset('forntend/css/bootstrap.css') }}">
 
 
+
+  <link rel="stylesheet" href="{{ URL::asset('forntend/css/style.css') }}">
 
 
 
@@ -32,17 +30,32 @@
 
 
 
-    <title>Aquila Matrimony</title>
+
+
+  <title>Aquila Matrimony</title>
 
 </head>
 
 <body style="background-color:#f0f2f5;">
-<scetion class="signin-page">
+  <scetion class="signin-page">
     <div class="container">
       <div class="logo">
         <h1>Aquila Matrimony</h1>
+        @if($errors->any())
+        @foreach($errors->all() as $error)
+
+        <div class="alert alert-danger alert-dismissable ">
+
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+
+          {{ $error }}
+
+        </div>
+        @endforeach
+        @endif
       </div>
       <div class="row">
+      
 
 
         <div class="col-lg-6 signup-leftimg">
@@ -56,7 +69,7 @@
           <h2>Sign in</h2>
 
           <form action="{{url('/login')}}" method="post">
-@csrf
+            @csrf
 
             <input type="text" name="email" placeholder="Enter your Email" required>
             <input type="password" name="password" placeholder="Enter your password" required>
@@ -70,8 +83,7 @@
           <div class="social-login">
             <p>Or Login with</p>
 
-            <a href="#" class="facebook-login"><i class="fab fa-facebook-f"></i> Facebook</a> <a href="#"
-              class="linkedin-login"><i class="fab fa-linkedin-in"></i> Linkedin</a>
+            <a href="#" class="facebook-login"><i class="fab fa-facebook-f"></i> Facebook</a> <a href="#" class="linkedin-login"><i class="fab fa-linkedin-in"></i> Linkedin</a>
           </div>
 
 
@@ -93,14 +105,14 @@
   </footer>
 
 
-    
 
 
 
-    <script src="https://kit.fontawesome.com/69b12198c3.js" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 
-<script src="{{ URL::asset('forntend/js/bootstrap.min.js') }}"></script>
+  <script src="https://kit.fontawesome.com/69b12198c3.js" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+
+  <script src="{{ URL::asset('forntend/js/bootstrap.min.js') }}"></script>
 
 
 </body>

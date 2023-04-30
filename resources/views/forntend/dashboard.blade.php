@@ -70,13 +70,9 @@
                           <ul>
                               <li><img src="{{ URL::asset('forntend/img/notfication-icon.png')}}"><span>01</span></li>
                               <li><img src="{{ URL::asset('forntend/img/own-profile-icon.png')}}"></li>
-                              <li><select class="form-control">
-
-
-								<option value="{{url('/logout')}}">Logout</option>
-									
-
-							</select></li>
+                              <li>
+                              <a href="{{url('/logout')}}">Logout</a>
+                        </li>
                           </ul>
                       </div>
                   </div><!--col-lg-2-->

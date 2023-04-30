@@ -28,6 +28,13 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'user_name' ,
+        'profile_creator' ,
+        'password' ,
+        'c_password',
+        'email',
+        'contact_number' ,
+        'religion_id',
     ];
 
     /**
