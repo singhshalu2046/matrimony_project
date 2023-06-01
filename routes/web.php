@@ -41,6 +41,7 @@ Route::group(['middleware' => "auth"], function () {
     Route::post('/changepassword', [UserController::class, 'ChangePassword']);
     Route::post('/updateprofile', [UserController::class, 'CustomerUpdate']);
     Route::get('/dashboard', [UserController::class, 'UserDashboard']);
+    Route::get('/edit-profile', [UserController::class, 'UserProfile']);
 
     //Logout
     Route::get('/logout', [UserController::class, 'Logout']);

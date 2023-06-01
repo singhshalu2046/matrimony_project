@@ -83,6 +83,18 @@ class UserController extends Controller
         return view('forntend.dashboard');
     }
 
+    public function UserProfile(User $user)
+    {
+        $page_title ="Profile ";
+        return view('forntend.editprofile', compact('user','page_title'));
+    }
+    public function UpdateProfile(Request $request, User $user)
+    {
+        $user->update($request->all());
+
+        return redirect(url('/dashboard'));
+    }
+
 
     public function Logout()
     {

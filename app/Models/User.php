@@ -25,16 +25,8 @@ class User extends Authenticatable
     public $table="users";
 
     protected $fillable = [
-        'name',
-        'email',
-        'password',
-        'user_name' ,
-        'profile_creator' ,
-        'password' ,
-        'c_password',
-        'email',
-        'contact_number' ,
-        'religion_id',
+      
+        'c_password','id','user_name','profile_creator','email', 'password', 'gender', 'marital_status', 'contact_number', 'dob', 'height', 'religion_id', 'cast_id', 'country_id', 'city_id', 'state_id', 'district', 'zipcode_id', 'qualification_id', 'income_range_id', 'last_login', 'status', 'created_at', 'deleted_at', 'updated_at'
     ];
 
     /**

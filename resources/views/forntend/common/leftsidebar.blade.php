@@ -2,7 +2,7 @@
     <div class="left-profile">
         <div class="profile-div">
             <img src="{{ URL::asset('forntend/img/personimage.png')}}">
-            <h6>{{Session::get('user_name')}}</h6>
+            <h6>{{Auth()->User()->user_name}}</h6>
             <span>AM0001234</span>
         </div><!-- profile-div-->
         <div class="accnt-type">
@@ -17,7 +17,7 @@
         </div>
         <div class="profile-option">
             <ul>
-                <li><a href="#"><i class="fas fa-user-edit"></i>Edit Profile</a></li>
+                <li><a href="{{url('/edit-profile')}}"><i class="fas fa-user-edit"></i>Edit Profile</a></li>
                 <li><a href="#"><i class="fas fa-edit"></i>Edit Preferences</a></li>
                 <li><a href="#"><i class="fas fa-calendar-alt"></i>Daily Recommendations</a></li>
                 <li><a href="#"><i class="fas fa-comments"></i>Your Conversations</a></li>
