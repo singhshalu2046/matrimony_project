@@ -1,5 +1,5 @@
 <div class="col-lg-3">
-    <div class="right-side">
+    <div class="right-side sidebar">
         <div class="recent-activity">
             <p>Recent Activity Summary</p>
             <ul>

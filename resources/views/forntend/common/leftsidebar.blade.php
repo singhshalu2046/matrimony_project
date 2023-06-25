@@ -1,5 +1,5 @@
 <div class="col-lg-3">
-    <div class="left-profile">
+    <div class="left-profile sidebar">
         <div class="profile-div">
             <img src="{{ URL::asset('forntend/img/personimage.png')}}">
             <h6>{{Auth()->User()->user_name}}</h6>

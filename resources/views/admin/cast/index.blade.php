@@ -10,7 +10,7 @@
                     <div class="row g-4 align-items-center">
                         <div class="col-sm">
                             <div>
-                                <h5 class="card-title mb-0">Country List</h5>
+                                <h5 class="card-title mb-0">Cast List</h5>
                             </div>
                         </div>
                         
@@ -29,7 +29,7 @@
                                 </div>
                             </div>
                             <div class="col-xl-6">
-                                <a  class="btn btn-dange" href="{{ route('admin.country.create') }}"> Add </a>
+                                <a  class="btn btn-dange" href="{{ route('admin.cast.create') }}"> Add </a>
                             </div>
 
                             <!--end col-->
@@ -54,19 +54,21 @@
                                         </th>
 
                                         <th class="sort" data-sort="customer_name">name</th>
+                                        <th class="sort" data-sort="religion_name">Religion</th>
+                                        <th class="sort" data-sort="status">Status</th>
                                         <th class="sort" data-sort="created_at">created at</th>
-                                        <th class="sort" data-sort="created_at">Status</th>
                                         <th class="sort" data-sort="action">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody class="list form-check-all">
-                                    @foreach($countries as $key => $item)
+                                    @foreach($casts as $key => $item)
                                     <tr>
                                         <th scope="row">
                                             {{++$key}}
                                         </th>
                                         
                                         <td class="customer_name">{{ $item->name }}</td>
+                                        <td class="customer_name">{{ $item->getReligion->name }}</td>
                                         <td class="date">{{ $item->created_at }}</td>
                                         <td class="status"><span
                                                 class="badge badge-soft-success text-uppercase">Active</span>
@@ -75,20 +77,20 @@
                                             <ul class="list-inline hstack gap-2 mb-0">
                                                 <li class="list-inline-item edit" data-bs-toggle="tooltip"
                                                     data-bs-trigger="hover" data-bs-placement="top" title="Edit">
-                                                    <a href="{{ route('admin.country.edit',$item->id) }}" 
+                                                    <a href="{{ route('admin.cast.edit',$item->id) }}" 
                                                         class="text-primary d-inline-block edit-item-btn">
                                                         <i class="ri-pencil-fill fs-16"></i>
                                                     </a>
                                                 </li>
-                                                <li class="list-inline-item delete_item" model="Country" item_id="{{ $item->id}}" data-bs-toggle="tooltip"
+                                                <li class="list-inline-item delete_item" model="Cast" item_id="{{ $item->id}}" data-bs-toggle="tooltip"
                                                     {{-- data-bs-trigger="hover" data-bs-placement="top" \ --}}
                                                     title="Remove">
-                                                    {{-- <form action="{{ route('admin.country.destroy',$item->id) }}" method="POST">
+                                                    {{-- <form action="{{ route('admin.cast.destroy',$item->id) }}" method="POST">
                                                     @csrf
                                                         @method('DELETE') --}}
 
                                                         {{-- <a class="text-danger d-inline-block remove-item-btn"
-                                                            data-bs-toggle="modal" href="{{ route('admin.country.edit',$item->id) }}"> --}}
+                                                            data-bs-toggle="modal" href="{{ route('admin.cast.edit',$item->id) }}"> --}}
                                                             <i class="ri-delete-bin-5-fill fs-16 text-danger d-inline-block remove-item-btn"></i>
                                                         {{-- </a> --}}
                                                     {{-- </form> --}}

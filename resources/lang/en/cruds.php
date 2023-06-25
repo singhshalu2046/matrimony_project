@@ -1,6 +1,6 @@
 <?php
-return[
-        'user'           => [
+return [
+    'user'           => [
         'title'          => 'Users',
         'title_singular' => 'User',
         'fields'         => [
@@ -21,9 +21,9 @@ return[
             'deleted_at'        => 'Deleted at',
             'deleted_at_helper' => ' ',
         ],
-     ],
+    ],
 
-     'country'           => [
+    'country'           => [
         'title'          => 'Countries',
         'title_singular' => 'Country',
         'fields'         => [
@@ -38,8 +38,8 @@ return[
             'deleted_at'        => 'Deleted at',
             'deleted_at_helper' => ' ',
         ],
-     ],
-     'language'           => [
+    ],
+    'language'           => [
         'title'          => 'Languages',
         'title_singular' => 'Language',
         'fields'         => [
@@ -54,8 +54,8 @@ return[
             'deleted_at'        => 'Deleted at',
             'deleted_at_helper' => ' ',
         ],
-     ],
-     'qualification'           => [
+    ],
+    'qualification'           => [
         'title'          => 'Qualifications',
         'title_singular' => 'Qualification',
         'fields'         => [
@@ -70,8 +70,8 @@ return[
             'deleted_at'        => 'Deleted at',
             'deleted_at_helper' => ' ',
         ],
-     ],
-     'state'           => [
+    ],
+    'state'           => [
         'title'          => 'States',
         'title_singular' => 'State',
         'fields'         => [
@@ -87,12 +87,63 @@ return[
             'deleted_at_helper' => ' ',
             'country'             => 'Country',
             'country_helper'             => ' ',
-
-
         ],
-     ],
-
-
-
-
-  ];
+    ],
+    'religion'           => [
+        'title'          => 'Religions',
+        'title_singular' => 'Religions',
+        'fields'         => [
+            'id'                => 'ID',
+            'id_helper'         => ' ',
+            'name'             => 'Name',
+            'name_helper'      => ' ',
+            'created_at'        => 'Created at',
+            'created_at_helper' => ' ',
+            'updated_at'        => 'Updated at',
+            'updated_at_helper' => ' ',
+            'deleted_at'        => 'Deleted at',
+            'deleted_at_helper' => ' ',
+           
+        ],
+    ],
+    'cast'           => [
+        'title'          => 'Cast',
+        'title_singular' => 'Cast',
+        'fields'         => [
+            'id'                => 'ID',
+            'id_helper'         => ' ',
+            'name'             => 'Name',
+            'name_helper'      => ' ',
+            'created_at'        => 'Created at',
+            'created_at_helper' => ' ',
+            'updated_at'        => 'Updated at',
+            'updated_at_helper' => ' ',
+            'deleted_at'        => 'Deleted at',
+            'deleted_at_helper' => ' ',
+            'religion'             => 'Religion',
+            'religion_helper'             => ' ',
+           
+        ],
+    ],
+        'subcast'           => [
+            'title'          => 'SubCast',
+            'title_singular' => 'SubCast',
+            'fields'         => [
+                'id'                => 'ID',
+                'id_helper'         => ' ',
+                'name'             => 'Name',
+                'name_helper'      => ' ',
+                'created_at'        => 'Created at',
+                'created_at_helper' => ' ',
+                'updated_at'        => 'Updated at',
+                'updated_at_helper' => ' ',
+                'deleted_at'        => 'Deleted at',
+                'deleted_at_helper' => ' ',
+                'religion'             => 'Religion',
+                'religion_helper'             => ' ',
+                'cast'             => 'Cast',
+                'cast_helper'             => ' ',
+               
+            ],
+    ],
+];

@@ -55,7 +55,6 @@
 
                                         <th class="sort" data-sort="customer_name">name</th>
                                         <th class="sort" data-sort="created_at">created at</th>
-                                        <th class="sort" data-sort="created_at">Status</th>
                                         <th class="sort" data-sort="action">Action</th>
                                     </tr>
                                 </thead>

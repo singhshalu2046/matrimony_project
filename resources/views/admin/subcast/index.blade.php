@@ -10,7 +10,7 @@
                     <div class="row g-4 align-items-center">
                         <div class="col-sm">
                             <div>
-                                <h5 class="card-title mb-0">Country List</h5>
+                                <h5 class="card-title mb-0">Subcast List</h5>
                             </div>
                         </div>
                         
@@ -29,7 +29,7 @@
                                 </div>
                             </div>
                             <div class="col-xl-6">
-                                <a  class="btn btn-dange" href="{{ route('admin.country.create') }}"> Add </a>
+                                <a  class="btn btn-dange" href="{{ route('admin.subcast.create') }}"> Add </a>
                             </div>
 
                             <!--end col-->
@@ -52,20 +52,22 @@
                                         <th scope="col" style="width: 50px;">
                                             S.N
                                         </th>
-
-                                        <th class="sort" data-sort="customer_name">name</th>
-                                        <th class="sort" data-sort="created_at">created at</th>
-                                        <th class="sort" data-sort="created_at">Status</th>
+                                        <th class="sort" data-sort="religion_name">Religion</th>
+                                        <th class="sort" data-sort="cast_name">Cast</th>
+                                        <th class="sort" data-sort="customer_name">Name</th>
+                                        <th class="sort" data-sort="status">Status</th>
+                                        <th class="sort" data-sort="created_at">Created at</th>
                                         <th class="sort" data-sort="action">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody class="list form-check-all">
-                                    @foreach($countries as $key => $item)
+                                    @foreach($subcasts as $key => $item)
                                     <tr>
                                         <th scope="row">
                                             {{++$key}}
                                         </th>
-                                        
+                                        <td class="customer_name">{{ $item->getReligion->name }}</td>
+                                        <td class="customer_name">{{ $item->getCast->name }}</td>
                                         <td class="customer_name">{{ $item->name }}</td>
                                         <td class="date">{{ $item->created_at }}</td>
                                         <td class="status"><span

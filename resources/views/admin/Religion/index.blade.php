@@ -10,7 +10,7 @@
                     <div class="row g-4 align-items-center">
                         <div class="col-sm">
                             <div>
-                                <h5 class="card-title mb-0">Country List</h5>
+                                <h5 class="card-title mb-0">Religion List</h5>
                             </div>
                         </div>
                         
@@ -29,7 +29,7 @@
                                 </div>
                             </div>
                             <div class="col-xl-6">
-                                <a  class="btn btn-dange" href="{{ route('admin.country.create') }}"> Add </a>
+                                <a  class="btn btn-dange" href="{{ route('admin.religion.create') }}"> Add </a>
                             </div>
 
                             <!--end col-->
@@ -55,12 +55,12 @@
 
                                         <th class="sort" data-sort="customer_name">name</th>
                                         <th class="sort" data-sort="created_at">created at</th>
-                                        <th class="sort" data-sort="created_at">Status</th>
+                                        <th>Status</th>
                                         <th class="sort" data-sort="action">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody class="list form-check-all">
-                                    @foreach($countries as $key => $item)
+                                    @foreach($religions as $key => $item)
                                     <tr>
                                         <th scope="row">
                                             {{++$key}}
@@ -75,20 +75,20 @@
                                             <ul class="list-inline hstack gap-2 mb-0">
                                                 <li class="list-inline-item edit" data-bs-toggle="tooltip"
                                                     data-bs-trigger="hover" data-bs-placement="top" title="Edit">
-                                                    <a href="{{ route('admin.country.edit',$item->id) }}" 
+                                                    <a href="{{ route('admin.religion.edit',$item->id) }}" 
                                                         class="text-primary d-inline-block edit-item-btn">
                                                         <i class="ri-pencil-fill fs-16"></i>
                                                     </a>
                                                 </li>
-                                                <li class="list-inline-item delete_item" model="Country" item_id="{{ $item->id}}" data-bs-toggle="tooltip"
+                                                <li class="list-inline-item delete_item" model="Religion" item_id="{{ $item->id}}" data-bs-toggle="tooltip"
                                                     {{-- data-bs-trigger="hover" data-bs-placement="top" \ --}}
                                                     title="Remove">
-                                                    {{-- <form action="{{ route('admin.country.destroy',$item->id) }}" method="POST">
+                                                    {{-- <form action="{{ route('admin.religion.destroy',$item->id) }}" method="POST">
                                                     @csrf
                                                         @method('DELETE') --}}
 
                                                         {{-- <a class="text-danger d-inline-block remove-item-btn"
-                                                            data-bs-toggle="modal" href="{{ route('admin.country.edit',$item->id) }}"> --}}
+                                                            data-bs-toggle="modal" href="{{ route('admin.religion.edit',$item->id) }}"> --}}
                                                             <i class="ri-delete-bin-5-fill fs-16 text-danger d-inline-block remove-item-btn"></i>
                                                         {{-- </a> --}}
                                                     {{-- </form> --}}

@@ -12,10 +12,10 @@ use App\Http\Controllers\CommonController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\QualificationController;
 use App\Http\Controllers\StateController;
-
-
-
-use App\Models\User;
+use App\Http\Controllers\ReligionController;
+use App\Http\Controllers\CastController;
+use App\Http\Controllers\SubCastController;
+use App\Http\Controllers\DistrictController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,8 +27,6 @@ use App\Models\User;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-
 
 Route::get('/', [UserController::class, 'Home']);
 Route::get('/login', [UserController::class, 'UserLoginPage'])->name('login');
@@ -42,7 +40,6 @@ Route::group(['middleware' => "auth"], function () {
     Route::post('/updateprofile', [UserController::class, 'CustomerUpdate']);
     Route::get('/dashboard', [UserController::class, 'UserDashboard']);
     Route::get('/edit-profile', [UserController::class, 'UserProfile']);
-
     //Logout
     Route::get('/logout', [UserController::class, 'Logout']);
 });
@@ -59,29 +56,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::post('changepassword', [AdminController::class, 'ChangePasswordSave']);
     Route::get('logout', [AdminController::class, 'Logout']);
     Route::get('/getpass', [AdminController::class, 'getpass']);
-
-
     //Website Setting Route
     // Route::get('websitesetting', [WebsiteSettingController::class, 'WebsiteSetting']);
     // Route::post('websitesetting', [WebsiteSettingController::class, 'Save']);
-
-    //Testimonial Route
-    // Route::get('testimonial', [TestimonialController::class, 'AllTestimonial']);
-    // Route::get('addtestimonial', [TestimonialController::class, 'AddTestimonial']);
-    // Route::post('addtestimonial', [TestimonialController::class, 'AddTestimonialData']);
-    // Route::post('deletetestimonial', [TestimonialController::class, 'DeleteTestimonial']);
-    // Route::get('updatetestimonial/{id}', [TestimonialController::class, 'UpdateTestimonial']);
-    // Route::post('updatetestimonial', [TestimonialController::class, 'Save']);
-
-    // //Banner Route
-    // Route::get('banner', [BannerController::class, 'AllBanner']);
-    // Route::get('addbanner', [BannerController::class, 'AddBanner']);
-    // Route::post('addbanner', [BannerController::class, 'AddBannerData']);
-    // Route::post('deletebanner', [BannerController::class, 'DeleteBanner']);
-    // Route::get('updatebanner/{id}', [BannerController::class, 'UpdateBanner']);
-    // Route::post('updatebanner', [BannerController::class, 'Save']);
-
-    // // Customer Route
 
     Route::post('deletecustomer', [CustomerController::class, 'DeleteCustomer'])->name('customer.deletecustomer');
 
@@ -89,20 +66,13 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
 
     Route::resource('country', CountryController::class);
     Route::resource('state', StateController::class);
-
+    Route::resource('district', DistrictController::class);
     Route::resource('qualification', QualificationController::class);
     Route::resource('language', LanguageController::class);
-
-
+    Route::resource('religion', ReligionController::class);
+    Route::resource('cast', CastController::class);
+    Route::resource('subcast', SubCastController::class);
     Route::post('common/delete', [CommonController::class, 'delete'])->name('common.delete');
-
-    // Route::get('customer', [CustomerController::class, 'AllCustomer']);
-    // Route::get('addcustomer', [CustomerController::class, 'AddCustomer']);
-    // Route::post('addcustomer', [CustomerController::class, 'AddCustomerData']);
-    // Route::post('deletecustomer', [CustomerController::class, 'DeleteCustomer']);
-    // Route::get('updatecustomer/{id}', [CustomerController::class, 'UpdateCustomer']);
-    // Route::post('updatecustomer', [CustomerController::class, 'Save']);
-
 });
 // Auth::routes();
 

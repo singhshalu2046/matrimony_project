@@ -38,8 +38,7 @@
             <ul class="navbar-nav" id="navbar-nav">
                 <li class="menu-title"><span >Menu</span></li>
                 <li class="nav-item">
-                    <a class="nav-link menu-link" href="{{url('admin/dashboard')}}" data-bs-toggle="collapse" role="button"
-                        aria-expanded="false" aria-controls="sidebarDashboards">
+                    <a class="nav-link menu-link" href="{{url('admin/dashboard')}}">
                         <i class="las la-tachometer-alt"></i> <span >Dashboards</span>
                     </a>
                     
@@ -53,9 +52,7 @@
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
                             <a href="{{url('admin/customer')}}" class="nav-link" >All User</a>
-                            </li>
-                           
-                            
+                            </li>                            
                         </ul>
                     </div>
                 </li>
@@ -83,9 +80,51 @@
                             
                         </ul>
                     </div>
+                    <div class="collapse menu-dropdown"  id="sidebarApps">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                            <a href="{{url('admin/district')}}" class="nav-link" >District</a>
+                            </li>
+                           
+                            
+                        </ul>
+                    </div>
 
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link menu-link {{ request()->is("admin/religion*") ? "menu-open" : "" }} {{ request()->is("admin/cast*") ? "menu-open" : "" }}" href="#sidebarApps" data-bs-toggle="collapse"
+                        role="button" aria-expanded="false" aria-controls="sidebarApps">
+                        <i class="lab la-delicious"></i> <span >Religion</span>
+                    </a>
+                    <div class="collapse menu-dropdown" id="sidebarApps">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                            <a href="{{url('admin/religion')}}" class="nav-link" >Religion</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
 
+                    <div class="collapse menu-dropdown"  id="sidebarApps">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                            <a href="{{url('admin/cast')}}" class="nav-link" >Cast</a>
+                            </li>
+                           
+                            
+                        </ul>
+                    </div>
+                    <div class="collapse menu-dropdown"  id="sidebarApps">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                            <a href="{{url('admin/subcast')}}" class="nav-link" >Subcaste</a>
+                            </li>
+                           
+                            
+                        </ul>
+                    </div>
+
+                </li>
 
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="#sidebarApps" data-bs-toggle="collapse"

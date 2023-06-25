@@ -19,6 +19,7 @@ body{
   font-family: 'Roboto', sans-serif;
 }
 .main-head{background-color:#ff0000;padding: 10px 0px;}
+.main-head.fixed{position:sticky;  top:0; right:0; left:0; z-index:111}
 .logo h1{font-size:40px;color: #fff;margin-bottom: 0;text-transform: uppercase;}
 .mob-logo-show{display:none;}
 .menu-sec .navbar-nav li a{color: #fff !IMPORTANT;font-size:14px;font-weight: 700;text-transform: uppercase;padding-right: 14px !IMPORTANT;}
@@ -151,7 +152,7 @@ body{
     width: 6px;background-color:#e6e6e6;margin-top:10px;
 }
 
-.nav-tab-profile {background:#fff; margin:10px 0px; padding:0 10px; border-radius:5px}
+.nav-tab-profile {background:white; margin-bottom:10px; border-radius:5px}
 .nav-tab-profile li {position:relative; z-index:1}
 .nav-tab-profile .dropdown-menu {margin-top:-3px}
 .nav-tab-profile li:hover .dropdown-menu {display:block}
@@ -166,13 +167,15 @@ body{
 #pform .form-select.w-auto, #pform .form-control.w-auto {width:auto!important}
 #pform .form-select.h-auto, #pform .form-control.h-auto {height:auto!important}
 #pform label {font-size:12px; font-weight:bold; text-align: right}
-.labelradiobtn {font-size:12px; line-height:2rem; font-weight:200; white-space:nowrap;   margin:0 5px; position:relative; top:-10px}
+.labelradiobtn {font-size:12px; line-height:2rem; font-weight:200; white-space:nowrap;   margin:0 5px; position:relative; top:-2px}
 .m-field {position:relative; top:0px; color:#ff4400; font-size:16px}
  .fs-70 {font-size:70%}
 #pform .no-visible {display: none}
 .fa-check{color:#349d00; width:16px; height:16px; border: 1px solid #349d00; border-radius:50%; text-align:center;  line-height:1.5;}
-#pform input.s-btn {background:#349d00; color:#fff; max-width:160px}    
-        
+#pform input.s-btn {background:#349d00; color:#fff; max-width:160px}
+.sidebar {width:280px; height:98vh; overflow-y:scroll;}
+.sidebar::-webkit-scrollbar{width:6px; background-color:#d4d4d4}
+         
 /**** footer****/
 .main-footer{background-color:#f62425;padding: 30px 0px;margin-top: 30px;padding-bottom: 25px;width: 100%;}
 .footer-link{padding-bottom: 16px;border-bottom: 1px solid #f86666;}
