@@ -386,18 +386,6 @@
                       <div class="invalid-feedback">Please select occupation</div>
                     </div>
                   </div>
-
-
-
-
-
-
-
-
-
-
-
-
                   <div class="form-group d-flex justify-content-end accnt-type mr-5">
                     <input type="submit" class="s-btn" size="38" id="" name="" value="Save">
                   </div>

@@ -35,14 +35,15 @@
                                 <h5 class="text-primary">Welcome Back !</h5>
                                 <p class="text-muted">Sign in to continue to Aquila Matrimony.</p>
                             </div>
+                            
                             <div class="p-2 mt-4">
-                                <form action="{{ url('admin/login') }}" method="POST">
+                                <form action="{{ url('admin/loginsave') }}" method="POST">
                                     @csrf
-                                    <input type="hidden" name="type" class="form-control" id="type" value="admin">
+                                  
                                     <div class="mb-3">
                                         <label for="username" class="form-label">Username</label>
-                                        <input type="text" class="form-control @error('email') is-invalid @enderror"  id="username" name="username" placeholder="Enter username">
-                                        @error('email')
+                                        <input type="text" class="form-control @error('user_name') is-invalid @enderror"  id="username" name="user_name" placeholder="Enter username">
+                                        @error('user_name')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>

@@ -44,8 +44,9 @@ Route::group(['middleware' => "auth"], function () {
     Route::get('/logout', [UserController::class, 'Logout']);
 });
 
-
-Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
+Route::get('admin-login', [AdminController::class, 'Login'])->name('admin-login');;
+Route::post('admin/loginsave', [AdminController::class, 'AdminLogin']);
+Route::group(['prefix' => 'admin', 'as' => 'admin.','middleware'=>'admin'], function () {
 
     Route::get('/login', [AdminController::class, 'Login']);
     Route::post('login', [AdminController::class, 'AdminLogin']);

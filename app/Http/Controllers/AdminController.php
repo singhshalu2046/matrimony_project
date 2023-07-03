@@ -2,16 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Admin;
 use Illuminate\Http\Request;
 
 use Illuminate\Contracts\Encryption\DecryptException;
 use Facade\Ignition\Exceptions\ViewException;
 use Session;
-use Crypt;
-// use Hash;
 use App\Models\admin_tbl;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Auth;
+use Validator;
 
 class AdminController extends Controller
 {
@@ -25,42 +27,25 @@ class AdminController extends Controller
 	// Admin Login
 	function AdminLogin(Request $req)
 	{
-		$matchThese = ['user_name' => $req->input('username'), 'type' => $req->input('type')];
-		$user = admin_tbl::where($matchThese)->get();
-		$user_count = admin_tbl::where($matchThese)->count();
-
-		// try {
-		// 	// $decrypted = Crypt::decrypt($encryptedValue);
-		// 	Crypt::decrypt($user[0]->password)==$req->input('password');
-		// 	$req->session()->put('id',$user[0]->id);
-		// 	$req->session()->put('name',$user[0]->name);
-		// 	$req->session()->put('photo',$user[0]->img);
-		// 	return redirect(url('/admin/dashboard'));
-
-		// } catch (DecryptException $e) {
-		// 	echo $e->getMessage();
-		// }
-		// dd($user);
-
-		// if (Hash::check('plain-text-password', $hashedPassword)) {
-		// 	// The passwords match...
-		// }
-		if ($user_count == '1' && Hash::check($req->input('password'), $user[0]->password))
-		// Crypt::decrypt($user[0]->password)==$req->input('password'))
-		{
-			$req->session()->put('id', $user[0]->id);
-			$req->session()->put('name', $user[0]->name);
-			$req->session()->put('photo', $user[0]->img);
-			return redirect(url('/admin/dashboard'));
-		} else {
-			// echo "NA";exit;
-			return redirect()->back()->withInput();
-		}
-
-		$req->session()->flash('error', 'Invalid password!');
-		return redirect()
-			->back()
-			->withInput();
+			$validator = Validator::make(
+				$req->all(),
+				[
+					'user_name' => 'required|exists:admin_tbl,user_name',
+					'password' => 'required',
+				],
+			);
+			if ($validator->fails()) {
+				return redirect()->back()->withErrors($validator->errors());
+			}
+		   
+			$auth = Auth::guard('admin')->attempt(['user_name' => $req->user_name, 'password' => $req->password]);
+			if ($auth) {
+				$req->session()->flash('success', 'You\'ve Successfully Login');
+				return redirect('/admin/dashboard');
+			} else {
+				$req->session()->flash('error','Wrong password entered');
+				return redirect()->back()->withInput();
+			}
 	}
 
 	// Add Dashboard
@@ -78,7 +63,7 @@ class AdminController extends Controller
 	function Profile($id)
 	{
 		$page_title = 'Profile';
-		$data = admin_tbl::find($id);
+		$data = Admin::find($id);
 		return view('admin.profile', ['data' => $data, 'page_title' => $page_title]);
 	}
 
@@ -95,7 +80,7 @@ class AdminController extends Controller
 			$req->session()->put('photo', $imageName);
 		}
 
-		$admin_tbl = admin_tbl::find($req->id);
+		$admin_tbl = Admin::find($req->id);
 		$admin_tbl->name = $req->name;
 		$admin_tbl->mobile = $req->mobile;
 		$admin_tbl->email = $req->email;
@@ -124,8 +109,8 @@ class AdminController extends Controller
 			return redirect()->back()->withInput();
 		}
 
-		$admin_tbl = admin_tbl::find($req->id);
-		$admin_tbl->password = Crypt::encrypt($req->new_password);
+		$admin_tbl = Admin::find($req->id);
+		$admin_tbl->password = Hash::make($req->new_password);
 		$admin_tbl->save();
 		$req->session()->flash('success', 'Update successfully');
 		return redirect('admin/changepassword/' . $req->id);
@@ -134,15 +119,11 @@ class AdminController extends Controller
 	// Logout
 	function Logout()
 	{
-		session()->forget('id');
-		session()->forget('name');
-		session()->forget('error');
+		Session::flush();
+        Auth::logout();
+        return redirect(url('/itr-admin'));
 		return redirect('admin/login');
 	}
-	function getpass($user)
-	{
-		return crypt::encrypt('test');
-		
-	}
+	
 
 }
