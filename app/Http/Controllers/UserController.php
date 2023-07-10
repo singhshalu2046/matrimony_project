@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cast;
+use App\Models\Education;
+use App\Models\Language;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\Encryption\DecryptException;
 use Facade\Ignition\Exceptions\ViewException;
@@ -11,13 +14,16 @@ use Hash;
 use Illuminate\Support\Facades\Auth;
 use Validator;
 use App\Models\User;
+use App\Models\Religion;
+use App\Models\SubCast;
 use Illuminate\Support\Facades\Redirect;
 
 class UserController extends Controller
 {
-    public function Home()
+    public function Home( )
     {
-        return view('forntend.index');
+        $religions = Religion::all(); 
+        return view('forntend.index',compact('religions'));
     }
     public function UserLoginPage()
     {
@@ -44,6 +50,7 @@ class UserController extends Controller
         $input = $req->all();
         $input['password'] = Hash::make($input['password']);
         $user = User::create($input);
+
         if ($user) {
             $req->session()->flash('success', 'Register successfully');
             return redirect('/');
@@ -86,15 +93,32 @@ class UserController extends Controller
     public function UserProfile(User $user)
     {
         $page_title ="Profile ";
-        return view('forntend.editprofile', compact('user','page_title'));
+        $religion = Religion::where('name', Auth::user()->religion)->first();
+        $casts = Cast::where('religion_id',$religion->id)->get();
+        $langauges = Language::all();
+        return view('forntend.editprofile', compact('user','casts','langauges','page_title'));
     }
     public function UpdateProfile(Request $request, User $user)
     {
+        $user = User::find(Auth::user()->id);
         $user->update($request->all());
 
-        return redirect(url('/dashboard'));
+        return redirect(url('/profile'));
     }
+    public function UserEducation()
+    {
+        $page_title ="Education ";
+        $education = Education::where('user_id', Auth::user()->id)->first();
+        return view('forntend.education', compact('education','page_title'));
+    }
+   public function EducationSave(Request $request, Education $education)
+    {
+        $education = Education::find(Auth::user()->id);
+        $education->update($request->all());
 
+        return redirect(url('/profile'));
+    }
+    
 
     public function Logout()
     {

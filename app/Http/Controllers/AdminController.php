@@ -121,7 +121,6 @@ class AdminController extends Controller
 	{
 		Session::flush();
         Auth::logout();
-        return redirect(url('/itr-admin'));
 		return redirect('admin/login');
 	}
 	

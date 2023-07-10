@@ -33,13 +33,17 @@ Route::get('/login', [UserController::class, 'UserLoginPage'])->name('login');
 Route::get('/dashboard', [UserController::class, 'UserDashboard']);
 Route::post('login', [UserController::class, 'UserLogin']);
 Route::post('signup', [UserController::class, 'SignUP']);
-
+Route::get('getcast', [CastController::class,'GetCast']);
+Route::get('getsubcast', [SubCastController::class,'GetSubCast']);
 Route::group(['middleware' => "auth"], function () {
 
     Route::post('/changepassword', [UserController::class, 'ChangePassword']);
     Route::post('/updateprofile', [UserController::class, 'CustomerUpdate']);
     Route::get('/dashboard', [UserController::class, 'UserDashboard']);
-    Route::get('/edit-profile', [UserController::class, 'UserProfile']);
+    Route::get('/profile', [UserController::class, 'UserProfile']);
+    Route::post('/profile', [UserController::class, 'UpdateProfile']);
+    Route::get('/education-occupation', [UserController::class, 'UserEducation']);
+    Route::post('/education-occupation', [UserController::class, 'UserEducationSave']);
     //Logout
     Route::get('/logout', [UserController::class, 'Logout']);
 });

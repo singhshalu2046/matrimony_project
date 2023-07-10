@@ -48,14 +48,12 @@ class ReligionController extends Controller
 
     public function show(Religion $country)
     {
-
         echo "show";
     }
 
     
     public function destroy(Religion $brand)
     {
-
         dd("hy");
         abort_if(Gate::denies('brand_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
@@ -63,5 +61,7 @@ class ReligionController extends Controller
 
         return back();
     }
+
+    
 
 }

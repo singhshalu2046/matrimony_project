@@ -6,6 +6,7 @@ use App\Models\Cast;
 use App\Models\Religion;
 use App\Models\SubCast;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SubCastController extends Controller
 {
@@ -74,4 +75,18 @@ class SubCastController extends Controller
 
         return back();
     }
+    function GetSubCast(Request $req)
+	{
+        $castid =   Cast::where('name','=',$req->cast)->first();
+		$subcast = SubCast::where('cast_id','=',$castid->id)->get();
+        $data ='<option value="">Select</option>';
+		foreach($subcast as $item){
+			if($item->id == Auth::user()->subcast){
+				$data .='<option value="'.$item->name.'" selected>'.$item->name.'</option>';}
+			else{
+				$data .='<option value="'.$item->name.'">'.$item->name.'</option>';
+			}
+		}
+		return $data;
+	}
 }

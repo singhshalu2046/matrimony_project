@@ -17,7 +17,7 @@
         </div>
         <div class="profile-option">
             <ul>
-                <li><a href="{{url('/edit-profile')}}"><i class="fas fa-user-edit"></i>Edit Profile</a></li>
+                <li><a href="{{url('/profile')}}"><i class="fas fa-user-edit"></i>Edit Profile</a></li>
                 <li><a href="#"><i class="fas fa-edit"></i>Edit Preferences</a></li>
                 <li><a href="#"><i class="fas fa-calendar-alt"></i>Daily Recommendations</a></li>
                 <li><a href="#"><i class="fas fa-comments"></i>Your Conversations</a></li>

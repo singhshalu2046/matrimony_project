@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cast;
 use App\Models\Religion;
+use App\Models\SubCast;
 use Illuminate\Http\Request;
 
 class CastController extends Controller
@@ -71,4 +72,34 @@ class CastController extends Controller
 
         return back();
     }
+
+    function GetSubCategory(Request $req)
+	{
+
+		$sub_category = SubCast::where('cast_id','=',$req->subcast)->get();
+		$data ='<option value="">Select</option>';
+		foreach($sub_category as $item){
+			if($item->id == Session::get('subcast')){
+				$data .='<option value="'.$item->id.'" selected>'.$item->sub_category_name.'</option>';}
+			else{
+				$data .='<option value="'.$item->id.'">'.$item->sub_category_name.'</option>';
+			}
+		}
+		return $data;
+	}
+
+    function GetCast(Request $req)
+	{
+      
+		$sub_sub_category = Cast::where('relgion_id','=',$req->cast)->get();
+		$data ='<option value="">Select</option>';
+		foreach($sub_sub_category as $item){
+			if($item->id == Session::get('sub_sub_category_id')){
+				$data .='<option value="'.$item->id.'" selected>'.$item->sub_sub_category_name.'</option>';}
+			else{
+				$data .='<option value="'.$item->id.'">'.$item->sub_sub_category_name.'</option>';
+			}
+		}
+		return $data;
+	}
 }

@@ -26,8 +26,7 @@ class User extends Authenticatable
 
     protected $fillable = [
       
-        'c_password','id','user_name','profile_creator','email', 'password', 'gender', 'marital_status', 'contact_number', 'dob', 'height', 'religion_id', 'cast_id', 'country_id', 'city_id', 'state_id', 'district', 'zipcode_id', 'qualification_id', 'income_range_id', 'last_login', 'status', 'created_at', 'deleted_at', 'updated_at'
-    ];
+        'id', 'user_name', 'profile_creator', 'email', 'password', 'gender', 'marital_status', 'children_number', 'children_living_status', 'contact_number', 'dob', 'height', 'religion', 'cast', 'country', 'city', 'state', 'district', 'zipcode', 'subcast', 'income_range', 'mother_tongue', 'languages_known', 'gothra', 'star', 'raasi', 'manglik', 'eating_habits', 'smoking_habits', 'drinking_habits', 'about_me', 'physical_status', 'residence_type', 'citizenship', 'alt_mobile', 'last_login', 'status', 'created_at', 'deleted_at', 'updated_at'    ];
 
     /**
      * The attributes that should be hidden for serialization.

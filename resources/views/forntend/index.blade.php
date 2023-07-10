@@ -199,13 +199,16 @@
                                     <option value="Relative">Relative</option>
                                     <option value="Friend">Friend</option>
                                 </select>
-
-                                <select class="form-control" name="religion_id" required id="exampleFormControlSelect1">
+                              
+                                <select class="form-control" name="religion" required id="exampleFormControlSelect1">
 
                                     <option>Select Religion</option>
-                                    <option value="1">Hindu</option>
-                                    <option value="2">Muslim</option>
-                                    <option value="3">Sikh</option>
+                                   
+                                    @foreach($religions as $religion)
+                                 
+                                    <option value="{{$religion->name}}">{{$religion->name}}</option>
+                                   
+                                    @endforeach
 
                                 </select>
 
