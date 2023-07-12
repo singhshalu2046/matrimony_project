@@ -44,13 +44,47 @@
 </footer>
 
 <script src="https://kit.fontawesome.com/69b12198c3.js" crossorigin="anonymous"></script>
-
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="{{ URL::asset('forntend/js/owl.carousel.min.js')}}"></script>
 <script src="{{ URL::asset('forntend/js/bootstrap.min.js')}}"></script>
 
 <script type="text/javascript">
     $(document).ready(function() {
+        var country = $('#country :selected').attr('data-id');
+        var state = $('#state :selected').attr('data-id');
+        var url = "{{ url('get-state-district')}}";
+
+        // getStateDistrirct(country,state);
+        $('#country').change(function(){
+            var country = $('#country :selected').attr('data-id');
+             debugger
+             $('#state').empty();
+             getStateDistrirct(country);
+            
+        })
+
+
+        $('#state').change(function(){
+            var country = $('#country :selected').attr('data-id');
+            var state = $('#state :selected').attr('data-id');
+             $('#district').empty();
+             $('#state option[data-id=state]').attr('selected','selected');
+             getStateDistrirct(country,state);
+            
+        })
+
+        function getStateDistrirct(country,state=''){
+            $.get(url,{"country_id": country,"state_id": state}, function(data){
+                $('#state').empty();
+                $('#state').append(data.state);
+                var state = $('#state :selected').val();
+                $('#district').append(data.district);
+            })
+        }
+
+
+
         $.ajax({
             url: '{{url("getsubcast")}}',
             data: "cast=" + $("#cast").val(),
@@ -60,8 +94,7 @@
             }
         });
     });
-</script>
-<script type="text/javascript">
+
     $('#cast').change(function(e) {
         $.ajax({
             url: '{{url("getsubcast")}}',
@@ -135,9 +168,6 @@
 
 
     });
-</script>
-
-<script>
     $('.today-slider').owlCarousel({
 
         items: 6,
@@ -181,9 +211,6 @@
 
 
     })
-</script>
-
-<script>
     $('.new-match-slider').owlCarousel({
 
         items: 6,

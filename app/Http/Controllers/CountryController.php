@@ -56,7 +56,6 @@ class CountryController extends Controller
     public function destroy(Country $brand)
     {
 
-        dd("hy");
         abort_if(Gate::denies('brand_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $brand->delete();

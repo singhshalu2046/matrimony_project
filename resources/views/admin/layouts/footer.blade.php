@@ -24,7 +24,31 @@
 <script src="{{ URL::asset('admin/assets/js/pages/ecommerce-customer-list.init.js') }}"></script>
 <script src="{{ URL::asset('admin/assets/libs/sweetalert2/sweetalert2.min.js') }}"></script>
 <script src="{{ URL::asset('admin/assets/js/app.min.js') }}"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
 <script>
+
+    $(document).ready(function() {
+
+
+        $.ajax({
+            url: '{{url("getcast")}}',
+            data: "cast=" + $("#cast").val(),
+            type: "GET",
+            success: function(html) {
+                $("#cast").html(html);
+            }
+        });
+        $.ajax({
+            url: '{{url("getsubcast")}}',
+            data: "subcast=" + $("#subcast").val(),
+            type: "GET",
+            success: function(html) {
+                $("#subcast").html(html);
+            }
+        });
+
+    });
     $('.delete_item').click(function() {
         var id = $(this).attr('item_id');
         var model = $(this).attr('model');
@@ -46,20 +70,6 @@
             }
         })
     })
-</script>
-<script type="text/javascript">
-    $(document).ready(function() {
-        $.ajax({
-            url: '{{url("getcast")}}',
-            data: "cast=" + $("#cast").val(),
-            type: "GET",
-            success: function(html) {
-                $("#cast").html(html);
-            }
-        });
-    });
-</script>
-<script type="text/javascript">
     $('#category').change(function(e) {
         $.ajax({
             url: '{{url("getcast")}}',
@@ -70,20 +80,6 @@
             }
         });
     });
-</script>
-<script type="text/javascript">
-    $(document).ready(function() {
-        $.ajax({
-            url: '{{url("getsubcast")}}',
-            data: "subcast=" + $("#subcast").val(),
-            type: "GET",
-            success: function(html) {
-                $("#subcast").html(html);
-            }
-        });
-    });
-</script>
-<script type="text/javascript">
     $('#category').change(function(e) {
         $.ajax({
             url: '{{url("getsubcast")}}',

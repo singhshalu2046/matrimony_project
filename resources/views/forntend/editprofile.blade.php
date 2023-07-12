@@ -28,7 +28,7 @@
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="contact-info.html">Contact Details</a>
+                            <a class="nav-link" href="{{ url('contact-info')}}">Contact Details</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="enhanced-profile.html">Enhanced Profile</a>
