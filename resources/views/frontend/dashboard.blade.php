@@ -1,4 +1,4 @@
-@extends('forntend.layouts.app')
+@extends('frontend.layouts.app')
 
 @section('content')
 <section class="top-ver">
@@ -12,7 +12,7 @@
 <scetion class="main-dashboard">
     <div class="container">
         <div class="row">
-        @include('forntend.common.leftsidebar')
+        @include('frontend.common.leftsidebar')
             <div class="col-lg-6">
                 <div class="center-match-div">
                     <div class="first-head">
@@ -192,7 +192,7 @@
                     </div><!-- owl-carousel-->
                 </div><!-- center match div -->
             </div><!-- col-lg-6-->
-            @include('forntend.common.rightsidebar')
+            @include('frontend.common.rightsidebar')
         </div>
     </div>
 </scetion>

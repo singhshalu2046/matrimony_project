@@ -1,4 +1,4 @@
-@extends('forntend.layouts.app')
+@extends('frontend.layouts.app')
 
 @section('content')
 <section class="top-ver">
@@ -12,31 +12,11 @@
 <scetion class="main-dashboard">
     <div class="container my-3">
         <div class="row">
-            @include('forntend.common.leftsidebar')
+            @include('frontend.common.leftsidebar')
 
             <div class="col-lg-6 main-body">
-                <div class="nav-tab-profile">
-                    <ul class="nav justify-content-between">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Basic Info.</a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="education-and-occupation.html">Education &amp; Occupation</a></li>
-                                <li><a class="dropdown-item" href="family-info.html">Family Details</a></li>
-                                <li><a class="dropdown-item" href="hobbies-and-interest.html">Hobbies &amp; Interest</a></li>
-                                <li><a class="dropdown-item" href="partner-preference.html">Partner Preference</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="contact-info.html">Contact Details</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="enhanced-profile.html">Enhanced Profile</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="trust-badge.html">Trust Badge</a>
-                        </li>
-                    </ul>
-                </div>
+                @include('frontend.common.innerHeader')
+
                 <div class="profileContent">
                     <div class="info">
                         <div class="row justify-content-between py-2 m-0 bdr-bottom">
@@ -187,7 +167,7 @@
 
 
 
-            @include('forntend.common.rightsidebar')
+            @include('frontend.common.rightsidebar')
         </div>
     </div>
 </scetion>

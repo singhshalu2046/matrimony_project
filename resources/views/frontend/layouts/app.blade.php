@@ -1,13 +1,13 @@
 <!doctype html>
 <html lang="en">
-@include('forntend.common.meta')
+@include('frontend.common.meta')
 
 
 <body style="background-color:#f0f2f5;">
-    @include('forntend.common.header')
+    @include('frontend.common.header')
     @yield('content')
 
-    @include('forntend.common.footer')
+    @include('frontend.common.footer')
 </body>
 
 </html>

@@ -26,14 +26,14 @@ class UserController extends Controller
     public function Home( )
     {
         $religions = Religion::all(); 
-        return view('forntend.index',compact('religions'));
+        return view('frontend.index',compact('religions'));
     }
     public function UserLoginPage()
     {
         if(!empty(Auth()->User())){
             return redirect(url('/dashboard'));
         }else
-        return view('forntend.login');
+        return view('frontend.login');
     }
 
     public function SignUP(Request $req)
@@ -90,7 +90,7 @@ class UserController extends Controller
 
     public function UserDashboard()
     {
-        return view('forntend.dashboard');
+        return view('frontend.dashboard');
     }
 
     public function UserProfile(User $user)
@@ -101,7 +101,7 @@ class UserController extends Controller
         $casts = Cast::all();
 
         $langauges = Language::all();
-        return view('forntend.editprofile', compact('user','casts','langauges','page_title'));
+        return view('frontend.editprofile', compact('user','casts','langauges','page_title'));
     }
     public function UpdateProfile(Request $request, User $user)
     {
@@ -114,15 +114,34 @@ class UserController extends Controller
     {
         $page_title ="Education ";
         $education = Education::where('user_id', Auth::user()->id)->first();
-        return view('forntend.education', compact('education','page_title'));
+        // $education = Education::all();
+        return view('frontend.education', compact('education','page_title'));
     }
+
+
+    public function UserEducationSave(Request $request)
+    {
+        $request->merge(['user_id'=>auth()->user()->id]);
+        $checkEducation = Education::where('user_id',auth()->user()->id)->count();
+// dd($request->all());
+        if($checkEducation){
+            $data = Education::where('user_id',auth()->user()->id)->update($request->except(['_token']));
+        }else{
+            $data = Education::create($request->except(['_token']));
+        }
+
+        return redirect(url('/education-occupation'));
+
+    }
+
+    
     public function contactInfo(){
-        $page_title ="contactInfo ";
+        $page_title ="Contact Info ";
         $countries=Country::select('id','name')->get();
         $states=State::select('id','name')->get();
         $districts=District::select('id','name')->get();
 
-        return view('forntend.contactinfo', compact('page_title','countries','states','districts'));
+        return view('frontend.contactinfo', compact('page_title','countries','states','districts'));
     }
 
 
@@ -132,7 +151,15 @@ class UserController extends Controller
         // $countries=Country::select('id','name')->get();
         return redirect(url('/contact-info'));
 
-        // return view('forntend.contactinfo', compact('page_title','countries'));
+        // return view('frontend.contactinfo', compact('page_title','countries'));
+    }
+    public function enhancedProfile(){
+        $page_title ="Enhanced Profile ";
+        $countries=Country::select('id','name')->get();
+        $states=State::select('id','name')->get();
+        $districts=District::select('id','name')->get();
+
+        return view('frontend.enhancedProfile', compact('page_title','countries','states','districts'));
     }
 
 

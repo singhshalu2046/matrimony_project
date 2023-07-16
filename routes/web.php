@@ -44,10 +44,14 @@ Route::group(['middleware' => "auth"], function () {
     Route::post('/profile', [UserController::class, 'UpdateProfile']);
     Route::get('/education-occupation', [UserController::class, 'UserEducation']);
     Route::post('/education-occupation', [UserController::class, 'UserEducationSave']);
+
+
     Route::get('/contact-info', [UserController::class, 'contactInfo']);
     Route::post('save-contact-info', [UserController::class, 'saveContactInfo'])->name('save-contact-info');
-
     Route::get('/get-state-district', [UserController::class, 'getStateDistrict'])->name('get-state-district');
+
+    // Route::get('enhanced-profile', [UserController::class, 'enhancedProfile'])->name('enhanced-profile');
+
 
     
 

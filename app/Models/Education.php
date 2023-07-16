@@ -18,7 +18,7 @@ class Education extends Model
     ];
 
     protected $fillable = [
-        'id', 'higher_education', 'addiontal_degree', 'college_name', 'employed', 'occupation', 'created_at', 'updated_at', 'user_id'
+        'id', 'higher_education', 'addiontal_degree', 'college_name', 'employed', 'occupation', 'annual_income','created_at', 'updated_at', 'user_id'
 
     ];
 
