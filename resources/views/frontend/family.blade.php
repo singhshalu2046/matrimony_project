@@ -32,124 +32,105 @@
                     <div id="content">
                         <!-- Form fields start hee -->
                         <div id="pform">
-                            <form method="post" name="profileForm" id="profileForm" class="needs-validation" novalidate>
+                            <form method="post" name="profileForm" action="{{ url('save-family-info') }}" id="profileForm" class="needs-validation" novalidate>
+                                @csrf
 
                                 <div class="form-group d-flex justify-content-start">
-                                    <label for="familyValue" class="col-3 pr-2">Family Value <span class="m-field">*</span></label>
+                                    <label for="family_value" class="col-3 pr-2">Family Value <span class="m-field">*</span></label>
                                     <div class="col">
-                                        <input type="radio" class="w-auto" value="1" required>
-                                        <label class="labelradiobtn">Orthodox</label>
-                                        <input type="radio" class="w-auto" value="2" required>
-                                        <label class="labelradiobtn">Traditional</label>
-                                        <input type="radio" class="w-auto" value="3" required>
-                                        <label class="labelradiobtn">Moderate</label>
-                                        <input type="radio" class="w-auto" value="4" required>
-                                        <label class="labelradiobtn">Liberal</label>
-                                        <div class="invalid-feedback">Please select your Higher Education</div>
+                                        @foreach(App\Models\Family::FAMILY_VALUE as $key => $label)
+                                            <input type="radio" name="family_value" class="w-auto" value="{{ $key }}" {{$key==$family->family_value?'checked':''}} required>
+                                            <label class="labelradiobtn">{{ $label }}</label>
+                                        @endforeach
                                     </div>
                                 </div>
 
                                 <div class="form-group d-flex justify-content-start">
-                                    <label for="familyType" class="col-3 pr-2">Family Type <span class="m-field">*</span></label>
+                                    <label for="family_type" class="col-3 pr-2">Family Type <span class="m-field">*</span></label>
                                     <div class="col">
-                                        <input type="radio" class="w-auto" value="1" required>
-                                        <label class="labelradiobtn">Joint Family</label>
-                                        <input type="radio" class="w-auto" value="2" required>
-                                        <label class="labelradiobtn">Nuclear Family</label>
-                                        <div class="invalid-feedback">Please select your Higher Education</div>
+                                        @foreach(App\Models\Family::FAMILY_TYPE as $ft_key => $ft_label)
+                                            <input type="radio" name="family_type" class="w-auto" value="{{ $ft_key}}"  {{$ft_key==$family->family_type?'checked':''}} required>
+                                            <label class="labelradiobtn">{{ $ft_label }}</label>
+                                        @endforeach
                                     </div>
                                 </div>
                                 <div class="form-group d-flex justify-content-start">
-                                    <label for="familyFinStatus" class="col-3 pr-2">Family Status <span class="m-field">*</span></label>
+                                    <label for="family_status" class="col-3 pr-2">Family Status <span class="m-field">*</span></label>
                                     <div class="col">
-                                        <input type="radio" class="w-auto" value="1" checked="" required>
-                                        <label class="labelradiobtn">Middle Class</label>
-                                        <input type="radio" class="w-auto" value="2" required>
-                                        <label class="labelradiobtn">Upper middle class</label>
-                                        <input type="radio" class="w-auto" value="3" required>
-                                        <label class="labelradiobtn">Rich / Affluent</label>
+                                        @foreach(App\Models\Family::FAMILY_STATUS as $fs_key => $fs_label)
+                                            <input type="radio" name="family_status" class="w-auto" value="{{ $fs_key}}"  {{$fs_key==$family->family_status?'checked':''}}required>
+                                            <label class="labelradiobtn">{{ $fs_label }}</label>
+                                        @endforeach
+
                                     </div>
                                 </div>
                                 <div class="form-group d-flex justify-content-start">
-                                    <label for="nativePlace" class="form-label col-3 pr-2">Native Place</label>
-                                    <div class="col"> <input type="text" id="nativePlace" name="nativePlace" value="Delhi" class="form-control">
+                                    <label for="native_place" class="form-label col-3 pr-2">Native Place</label>
+                                    <div class="col"> <input type="text" id="native_place" name="native_place" value="{{ $family->native_place??'' }}" class="form-control">
                                     </div>
                                 </div>
                                 <div class="form-group d-flex justify-content-start">
-                                    <label for="fatherOccupation" class="form-label col-3 pr-2">Father's Occupation</label>
-                                    <div class="col"><input type="text" id="fatherOccupation" name="fatherOccupation" value="Manual Accountant" class="form-control">
+                                    <label for="father_occupation" class="form-label col-3 pr-2">Father's Occupation</label>
+                                    <div class="col"><input type="text" id="father_occupation" name="father_occupation" value="{{ $family->father_occupation??'' }}" class="form-control">
                                     </div>
                                 </div>
                                 <div class="form-group d-flex justify-content-start">
-                                    <label for="motherOccupation" class="form-label col-3 pr-2">Mother's Occupation</label>
-                                    <div class="col"><input type="text" id="motherOccupation" name="motherOccupation" value="House Wife" class="form-control">
+                                    <label for="mother_occupation" class="form-label col-3 pr-2">Mother's Occupation</label>
+                                    <div class="col"><input type="text" id="mother_occupation" name="mother_occupation" value="{{ $family->mother_occupation ??''}}" class="form-control">
                                     </div>
                                 </div>
 
                                 <div class="form-group d-flex justify-content-start my-4">
-                                    <label for="brothers" class="form-label col-3 pr-2">No. of Brothers</label>
+                                    <label for="brother" class="form-label col-3 pr-2">No. of Brothers</label>
                                     <div class="col">
-                                        <select name="brothers" id="brothers" class="form-select" required>
-                                            <option>--Select--</option>
-                                            <option value="0">None</option>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">5</option>
-                                            <option value="5">5</option>
-                                            <option value="6">6</option>
+                                        <select name="brother" id="brother" class="form-select" required>
+                                            <option value='' disabled>--Select--</option>
+                                            @for($i=0;$i<=6;$i++)
+                                                <option {{$family->brother==$i?'selected':''}} value="{{$i}}">{{ $i==0?'None':$i}}</option>
+                                            @endfor
                                         </select>
                                     </div>
                                 </div>
                                 <div class="form-group d-flex justify-content-start my-4">
-                                    <label for="marriedBrothers" class="form-label col-3 pr-2">Married Brothers</label>
+                                    <label for="married_brother" class="form-label col-3 pr-2">Married Brothers</label>
                                     <div class="col">
-                                        <select name="marriedBrothers" id="marriedBrothers" class="form-select" required>
-                                            <option>--Select--</option>
-                                            <option value="0">None</option>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">5</option>
-                                            <option value="5">5</option>
-                                            <option value="6">6</option>
+                                        <select name="married_brother" id="married_brother" class="form-select" required>
+                                            <option disabled>--Select--</option>
+                                            <option value='' disabled>--Select--</option>
+                                            @for($i=0;$i<=6;$i++)
+                                                <option {{$family->married_brother==$i?'selected':''}} value="{{$i}}">{{ $i==0?'None':$i}}</option>
+                                            @endfor
                                         </select>
                                     </div>
                                 </div>
                                 <div class="form-group d-flex justify-content-start my-4">
-                                    <label for="sisters" class="form-label col-3 pr-2">No. of Sisters</label>
+                                    <label for="sister" class="form-label col-3 pr-2">No. of Sisters</label>
                                     <div class="col">
-                                        <select name="sisters" id="sisters" class="form-select" required>
-                                            <option>--Select--</option>
+                                        <select name="sister" id="sister" class="form-select" required>
+                                            <option disabled>--Select--</option>
                                             <option value="0">None</option>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">5</option>
-                                            <option value="5">5</option>
-                                            <option value="6">6</option>
+                                            @for($i=0;$i<=6;$i++)
+                                                <option {{$family->sister==$i?'selected':''}} value="{{$i}}">{{ $i==0?'None':$i}}</option>
+                                            @endfor
                                         </select>
                                     </div>
                                 </div>
                                 <div class="form-group d-flex justify-content-start my-4">
-                                    <label for="marriedSisters" class="form-label col-3 pr-2">Married Sisters</label>
+                                    <label for="married_sister" class="form-label col-3 pr-2">Married Sisters</label>
                                     <div class="col">
-                                        <select name="marriedSisters" id="marriedSisters" class="form-select" required>
-                                            <option>--Select--</option>
+                                        <select name="married_sister" id="married_sister" class="form-select" required>
+                                            <option disabled>--Select--</option>
                                             <option value="0">None</option>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">5</option>
-                                            <option value="5">5</option>
-                                            <option value="6">6</option>
+                                            @for($i=0;$i<=6;$i++)
+                                                <option {{$family->married_sister==$i?'selected':''}} value="{{$i}}">{{ $i==0?'None':$i}}</option>
+                                            @endfor
                                         </select>
                                     </div>
                                 </div>
                                 <div class="form-group d-flex justify-content-start">
-                                    <label for="familyBrief" class="col-3 pr-2">About My Family</label>
+                                    <label for="about_family" class="col-3 pr-2">About My Family</label>
                                     <div class="col">
-                                        <textarea id="familyBrief" name="familyBrief" class="w-auto fs-70" cols="50" rows="6">I have created this profile for my sister Bharti, She is a well being and caring person, she is first class graduated from Commerce Stream and pursuing MA from Ignou Delhi and also preparing for IBPS exams. She want to become a banker.</textarea>
+                                        <textarea id="about_family" name="about_family" class="w-auto fs-70" cols="50" rows="6">{{ $family->about_family??''}}</textarea>
                                         <div class="small">Please enter your family information here.</div>
                                     </div>
                                 </div>

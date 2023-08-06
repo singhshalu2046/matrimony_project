@@ -19,6 +19,8 @@ use App\Models\State;
 use App\Models\District;
 use App\Models\Religion;
 use App\Models\SubCast;
+use App\Models\Family;
+
 use Illuminate\Support\Facades\Redirect;
 
 class UserController extends Controller
@@ -123,10 +125,10 @@ class UserController extends Controller
     {
         $request->merge(['user_id'=>auth()->user()->id]);
         $checkEducation = Education::where('user_id',auth()->user()->id)->count();
-// dd($request->all());
         if($checkEducation){
             $data = Education::where('user_id',auth()->user()->id)->update($request->except(['_token']));
         }else{
+            $request->merge(['user_id'=>auth()->user()->id]);
             $data = Education::create($request->except(['_token']));
         }
 
@@ -140,7 +142,6 @@ class UserController extends Controller
         $countries=Country::select('id','name')->get();
         $states=State::select('id','name')->get();
         $districts=District::select('id','name')->get();
-
         return view('frontend.contactinfo', compact('page_title','countries','states','districts'));
     }
 
@@ -153,6 +154,31 @@ class UserController extends Controller
 
         // return view('frontend.contactinfo', compact('page_title','countries'));
     }
+    public function familyInfo( Family $family){
+        $page_title ="Family Info ";
+        $family = Family::where('user_id', Auth::user()->id)->first();
+        // dd($family);
+        return view('frontend.family', compact('page_title','family'));
+    }
+    public function saveFamilyInfo(Request $request){
+        
+        $checkFamily = Family::where('user_id',auth()->user()->id)->count();
+        if($checkFamily){
+            $data = Family::where('user_id',auth()->user()->id)->update($request->except(['_token']));
+        }else{
+            $request->merge(['user_id'=>auth()->user()->id]);
+            // dd($request->all());
+            $data = Family::create($request->except(['_token']));
+        }
+
+        // $countries=Country::select('id','name')->get();
+        return redirect(url('/family-info'));
+
+        // return view('frontend.contactinfo', compact('page_title','countries'));
+    }
+
+
+
     public function enhancedProfile(){
         $page_title ="Enhanced Profile ";
         $countries=Country::select('id','name')->get();

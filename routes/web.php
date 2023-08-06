@@ -47,6 +47,8 @@ Route::group(['middleware' => "auth"], function () {
 
 
     Route::get('/contact-info', [UserController::class, 'contactInfo']);
+    Route::get('/family-info', [UserController::class, 'familyInfo'])->name('family-info');
+    Route::post('save-family-info', [UserController::class, 'saveFamilyInfo'])->name('save-family-info');
     Route::post('save-contact-info', [UserController::class, 'saveContactInfo'])->name('save-contact-info');
     Route::get('/get-state-district', [UserController::class, 'getStateDistrict'])->name('get-state-district');
 

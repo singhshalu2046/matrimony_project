@@ -1,0 +1,1 @@
+ALTER TABLE `family_user` CHANGE `family_value` `family_value` VARCHAR(255) NULL DEFAULT NULL, CHANGE `family_type` `family_type` VARCHAR(255) NULL DEFAULT NULL, CHANGE `family_status` `family_status` VARCHAR(255) NULL DEFAULT NULL;

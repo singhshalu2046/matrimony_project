@@ -5,7 +5,7 @@
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <li><a class="dropdown-item" href="education-and-occupation.html">Education &amp;
                         Occupation</a></li>
-                <li><a class="dropdown-item" href="family-info.html">Family Details</a></li>
+                <li><a class="dropdown-item" href="{{ url('family-info') }}" >Family Details</a></li>
                 <li><a class="dropdown-item" href="hobbies-and-interest.html">Hobbies &amp; Interest</a>
                 </li>
                 <li><a class="dropdown-item" href="partner-preference.html">Partner Preference</a></li>
